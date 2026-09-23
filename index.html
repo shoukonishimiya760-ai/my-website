@@ -19,6 +19,30 @@
       padding: 20px;
     }
 
+    /* Click overlay to bypass browser autoplay rules */
+    #click-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      cursor: pointer;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #click-overlay h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
     header {
       text-align: center;
       margin-bottom: 30px;
@@ -38,7 +62,6 @@
     /* Gallery Grid Layout */
     .gallery-container {
       display: grid;
-      /* Automatically fits columns based on screen width */
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
       max-width: 1200px;
@@ -53,9 +76,9 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       background-color: #fff;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
     }
 
-    /* Hover effect on cards */
     .gallery-item:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -63,18 +86,16 @@
 
     .gallery-item img {
       width: 100%;
-      height: 250px; /* Fixed height for consistency */
-      object-fit: cover; /* Keeps image proportions without stretching */
+      height: 250px;
+      object-fit: cover;
       display: block;
       transition: transform 0.3s ease;
     }
 
-    /* Zoom effect on image hover */
     .gallery-item:hover img {
       transform: scale(1.05);
     }
 
-    /* Optional Caption styling */
     .caption {
       padding: 12px;
       text-align: center;
@@ -86,6 +107,16 @@
 </head>
 <body>
 
+  <!-- Overlay requiring user interaction -->
+  <div id="click-overlay">
+    <h2>Click Anywhere to View Gallery</h2>
+    <p>Tap anywhere to unlock the images</p>
+  </div>
+
+  <!-- Custom audio file element -->
+  <!-- REPLACE 'audio/crash.mp3' WITH THE PATH TO YOUR MP3/WAV FILE -->
+  <audio id="prank-sound" src="sounds/moan meme.mp3" preload="auto"></audio>
+
   <header>
     <h1>The Gallery</h1>
     <p>A collection of fucked up moments</p>
@@ -95,9 +126,8 @@
 
     <!-- Image Item 1 -->
     <div class="gallery-item">
-      <!-- REPLACE 'your-image-1.jpg' with the filename/path of your image -->
       <img src="image/jade.jpg" alt="Description of Image 1">
-      <div class="caption">Yuck Shit</div>
+      <div class="caption">Yuck shit</div>
     </div>
 
     <!-- Image Item 2 -->
@@ -130,7 +160,44 @@
       <div class="caption">manahimik ang lahat nag dadasal ako</div>
     </div>
 
+     <!-- Image Item 7 -->
+    <div class="gallery-item">
+      <img src="image/before and after.png" alt="Description of Image 7">
+      <div class="caption">before and after</div>
+    </div>
+   
+    <!-- Image Item 8-->
+    <div class="gallery-item">
+      <img src="image/gupit (1) c.jpg" alt="Description of image 8">
+      <div class="caption">tama ba tong mga desisyon ko sa buhay</div>
+    </div>
+
+    <!-- Image Item 9 -->
+    <div class="gallery-item">
+      <img src="image/magtatay.png" alt="Description of Image 9">
+      <div class="caption">like father like son</div>
+    </div>
+
+    <!-- Image Item 10 -->
+    <div class="gallery-item">
+      <img src="image/gupit (3).jpg" alt="Description of Image 10">
+      <div class="caption">pakyu ka po </div>
+    </div>
+
   </main>
+
+  <script>
+    const overlay = document.getElementById('click-overlay');
+    const audio = document.getElementById('prank-sound');
+
+    function triggerPrank() {
+      // Play custom sound and hide overlay
+      audio.play().catch(error => console.log("Audio playback failed:", error));
+      overlay.style.display = 'none';
+    }
+
+    overlay.addEventListener('click', triggerPrank);
+  </script>
 
 </body>
 </html>
